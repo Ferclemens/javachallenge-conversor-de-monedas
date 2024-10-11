@@ -1,6 +1,7 @@
 package com.alura.conversordemonedas;
 
 import com.alura.conversordemonedas.modelos.GetData;
+import com.alura.conversordemonedas.modelos.Moneda;
 
 import java.util.Scanner;
 
@@ -10,13 +11,16 @@ public class Principal {
         Scanner lectura = new Scanner(System.in);
         //inicializamos la clase GetData
         GetData peticion = new GetData();
-    String busqueda = "1";
+
+        String busqueda = "1";
+        Double monto = 0.0;
+
     //Loop del menu si la elección es distinta de "0"
     while(!busqueda.equals("0")){
         System.out.println("***********************************");
         System.out.println("Bienvenido al conversor de monedas");
         System.out.println("***********************************");
-        System.out.println("Seleccione la conversión que desea realizar");
+        System.out.println("Seleccione la conversión que desea realizar o 0 para salir");
         System.out.println("1 - Dólar =>> Peso argentino");
         System.out.println("2 - Peso argentino =>> Dólar");
         System.out.println("3 - Dólar =>> Real brasileño");
@@ -26,11 +30,12 @@ public class Principal {
         System.out.println("0 - Salir");
         System.out.println("***********************************");
         busqueda = lectura.nextLine();
+        System.out.println("Escriba el monto que desea convertir");
+        monto = Double.valueOf(lectura.nextLine());
 
         switch (busqueda){
             case "1":
-                peticion.httpRequest("USD");
-
+                peticion.httpRequest("USD", "ARS", monto);
                 break;
         }
 
