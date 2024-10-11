@@ -10,12 +10,14 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.text.DecimalFormat;
 
 public class GetData {
     Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .create();
-
+    //Incializamos el formateador para dos decimales
+    DecimalFormat df = new DecimalFormat("#.00");
     public GetData() {
     }
     //Petición con 3 argumentos:
@@ -39,9 +41,15 @@ public class GetData {
             //System.out.println(moneda.toString());
             Double tasa = moneda.getRate(codigoSecundario);
             Double resultado = convertir.convertirMoneda(tasa, monto);
-            System.out.println(String.format("la conversión de $USD %f a Pesos argentinos es = $ARS %f", monto, resultado));
-            System.out.println("Tasa de conversión = " + tasa);
-            System.out.println("última actualización = " + moneda.getTime_last_update_utc());
+            //Formatos para imprimir
+            String resultadoFormateado = df.format(resultado);
+            String tasaFormateada = df.format(tasa);
+            String montoFormateado = df.format(monto);
+            String fechaFormateada = moneda.getTime_last_update_utc().substring(5, 16);
+            //Imprimir resultados
+            System.out.println(String.format("la conversión de $%s %s a $%s es = $%s %s",codigoBase, montoFormateado, codigoSecundario, codigoSecundario,resultadoFormateado));
+            System.out.println(String.format("Tasa de conversión %s = $ %s",codigoSecundario,tasaFormateada));
+            System.out.println("última actualización = " + fechaFormateada);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
