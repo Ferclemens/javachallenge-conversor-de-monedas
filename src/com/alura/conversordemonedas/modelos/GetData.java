@@ -24,7 +24,7 @@ public class GetData {
     //codigoBase es el código de moneda base que se quiere convertir (String)
     //codigoSecundario es el código de la tasa a usar para convertir la moneda base (String)
     //monto es la cantidad de dinero a convertir (Double)
-    //Ej: code: "USD", rate: "ARS" ->> convertimos de dolares a pesos argentinos.
+    //Ej: codigoBase: "USD", codigoSecundario: "ARS", monto: 10 ->> convertimos 10 dolares a pesos argentinos.
     public void httpRequest(String codigoBase, String codigoSecundario, Double monto) {
         String URL = "https://v6.exchangerate-api.com/v6/5773049a97300cadc8ddc5e7/latest/" + codigoBase;
         HttpClient client = HttpClient.newHttpClient();
@@ -43,16 +43,15 @@ public class GetData {
             Double resultado = convertir.convertirMoneda(tasa, monto);
             //Formatos para imprimir
             String resultadoFormateado = df.format(resultado);
-            String tasaFormateada = df.format(tasa);
             String montoFormateado = df.format(monto);
             String fechaFormateada = moneda.getTime_last_update_utc().substring(5, 16);
             //Imprimir resultados
-            System.out.println(String.format("la conversión de $%s %s a $%s es = $%s %s",codigoBase, montoFormateado, codigoSecundario, codigoSecundario,resultadoFormateado));
-            System.out.println(String.format("Tasa de conversión %s = $ %s",codigoSecundario,tasaFormateada));
-            System.out.println("última actualización = " + fechaFormateada);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+            System.out.println("----------------------------------------------------------");
+            System.out.println(String.format("- la conversión de $%s %s a $%s es = $%s %s",codigoBase, montoFormateado, codigoSecundario, codigoSecundario,resultadoFormateado));
+            System.out.println(String.format("- Tasa de conversión %s = $ %s",codigoSecundario,tasa));
+            System.out.println("- última actualización = " + fechaFormateada);
+            System.out.println("----------------------------------------------------------");
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
