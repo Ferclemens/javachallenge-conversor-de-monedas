@@ -1,7 +1,7 @@
 # javachallenge-conversor-de-monedas
 Conversor de monedas - Desafío ONE Java orientación backend.
 
-Consiste en un conversor de monedas con las opciones de convertir:
+Consiste en un conversor de monedas que funciona por consola. Con las opciones de convertir:
 - Dolar a Peso argentino y viceversa.
 - Dolar a Peso colombiano y viceversa.
 - Dolar a Real brasilero y viceversa.
