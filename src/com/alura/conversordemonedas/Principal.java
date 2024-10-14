@@ -3,6 +3,8 @@ package com.alura.conversordemonedas;
 import com.alura.conversordemonedas.modelos.GetData;
 import com.alura.conversordemonedas.modelos.Moneda;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
@@ -16,6 +18,15 @@ public class Principal {
         String busqueda = "1";
         Double monto = 0.0;
         String nuevaConversion = "";
+        List<String> opcionesMenu = new ArrayList<>();
+        opcionesMenu.add("1");
+        opcionesMenu.add("2");
+        opcionesMenu.add("3");
+        opcionesMenu.add("4");
+        opcionesMenu.add("5");
+        opcionesMenu.add("6");
+        opcionesMenu.add("0");
+
 
         System.out.println("**********************************************************");
         System.out.println("Bienvenido al conversor de monedas SystemOUTPrint-3000");
@@ -50,7 +61,20 @@ public class Principal {
             System.out.println("0 - Salir");
             System.out.println("**********************************************************");
             busqueda = lectura.nextLine();
-
+            while(!opcionesMenu.contains(busqueda)){
+                System.out.println("----------------------------------------------------------");
+                System.out.println("- Seleccione una de las opciones de la lista");
+                System.out.println("----------------------------------------------------------");
+                System.out.println("1 - Dólar =>> Peso argentino");
+                System.out.println("2 - Peso argentino =>> Dólar");
+                System.out.println("3 - Dólar =>> Real brasileño");
+                System.out.println("4 - Real brasileño =>> Dólar");
+                System.out.println("5 - Dólar =>> Peso colombiano");
+                System.out.println("6 - Peso colombiano =>> Dólar");
+                System.out.println("0 - Salir");
+                System.out.println("----------------------------------------------------------");
+                busqueda = lectura.nextLine();
+            }
 
             switch (busqueda){
                 case "1":
@@ -80,14 +104,6 @@ public class Principal {
                     System.out.println("----------------------------------------------------------");
                     System.out.println("- Seleccione una de las opciones de la lista");
                     System.out.println("----------------------------------------------------------");
-                    System.out.println("1 - Dólar =>> Peso argentino");
-                    System.out.println("2 - Peso argentino =>> Dólar");
-                    System.out.println("3 - Dólar =>> Real brasileño");
-                    System.out.println("4 - Real brasileño =>> Dólar");
-                    System.out.println("5 - Dólar =>> Peso colombiano");
-                    System.out.println("6 - Peso colombiano =>> Dólar");
-                    System.out.println("0 - Salir");
-                    busqueda = lectura.nextLine();
             }
             while(!nuevaConversion.equals("1") || !nuevaConversion.equals("2")){
                 System.out.println("**********************************************************");
